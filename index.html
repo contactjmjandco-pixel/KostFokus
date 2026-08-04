@@ -26,17 +26,17 @@
 
     .compact-toggles label:has(#trainingToggle){display:none!important}
     @media(max-width:920px){
-      .meal-body{overflow-x:auto;padding:0 10px 10px;-webkit-overflow-scrolling:touch}
+      .meal-body{overflow-x:auto;padding:0 0 10px;-webkit-overflow-scrolling:touch}
       .meal-table{min-width:820px}
       .meal-table th:first-child,.meal-table td:first-child{padding-left:14px}
       .meal-table .amount-head span{transform:none}
       .meal-table .amount-control{margin-left:auto;margin-right:auto}
     }
-    @media(max-width:560px){
-      .meal{overflow-x:auto;overflow-y:hidden}
-      .meal-head,.meal-body,.select-wrap{min-width:1180px}
-      .meal-body{overflow:visible;padding-left:10px;padding-right:24px}
-      .meal-table{width:1180px}
+    @media(max-width:920px){
+      .meal-table th:nth-child(4),.meal-table th:nth-child(5),.meal-table th:nth-child(6){font-size:0}
+      .meal-table th:nth-child(4)::after{content:"Protein";font-size:.82rem}
+      .meal-table th:nth-child(5)::after{content:"Carbs";font-size:.82rem}
+      .meal-table th:nth-child(6)::after{content:"Fett";font-size:.82rem}
     }
   </style>
 </head>
@@ -538,8 +538,6 @@ function confirmResetPlan(){
 </script>
 </body>
 </html>
-
-
 
 
 
