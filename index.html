@@ -32,6 +32,12 @@
       .meal-table .amount-head span{transform:none}
       .meal-table .amount-control{margin-left:auto;margin-right:auto}
     }
+    @media(max-width:560px){
+      .meal{overflow-x:auto;overflow-y:hidden}
+      .meal-head,.meal-body,.select-wrap{min-width:1180px}
+      .meal-body{overflow:visible;padding-left:10px;padding-right:24px}
+      .meal-table{width:1180px}
+    }
   </style>
 </head>
 <body>
@@ -532,7 +538,6 @@ function confirmResetPlan(){
 </script>
 </body>
 </html>
-
 
 
 
