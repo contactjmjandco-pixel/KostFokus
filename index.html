@@ -38,6 +38,15 @@
       .meal-table th:nth-child(5)::after{content:"Carbs";font-size:.82rem}
       .meal-table th:nth-child(6)::after{content:"Fett";font-size:.82rem}
     }
+    .meal-head{align-items:center}
+    .meal-total-grid{display:grid;grid-template-columns:repeat(4,minmax(62px,auto));gap:12px;margin-left:auto;text-align:right;white-space:nowrap}
+    .meal-total-item span{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.05em}
+    .meal-total-item strong{display:block;color:var(--green);font-size:.9rem}
+    .amount-head span{transform:translateX(-31px)}
+    .amount-control{grid-template-columns:36px 68px 36px 56px;gap:7px}
+    .amount-control button{width:36px;height:36px}
+    .amount-control input[type=number]{width:68px}
+    @media(max-width:720px){.meal-total-grid{grid-template-columns:repeat(4,minmax(52px,auto));gap:6px}.meal-total-item span{font-size:.58rem}.meal-total-item strong{font-size:.76rem}}
   </style>
 </head>
 <body>
@@ -535,14 +544,23 @@ function confirmResetPlan(){
   refresh();
   showToast("Återställt till standard.");
 }
+
+function renderMeals(){
+  const root=document.getElementById("meals");
+  if(!root)return;
+  root.innerHTML="";
+  mealRenderOrder().forEach(mealKey=>{
+    const meal=currentPlan.meals[mealKey];
+    const total=calculateMeal(mealKey);
+    const section=document.createElement("section");
+    section.className="card meal";
+    section.innerHTML=`<div class="meal-head"><label class="meal-title"><input type="checkbox" ${meal.active?"checked":""} onchange="toggleMeal('${mealKey}',this.checked)"><h2>${escapeHtml(meal.title)}</h2></label><div class="meal-total-grid"><div class="meal-total-item"><span>Kalorier</span><strong>${formatNumber(total.kcal)} kcal</strong></div><div class="meal-total-item"><span>Protein</span><strong>${formatNumber(total.protein,1)} g</strong></div><div class="meal-total-item"><span>Carbs</span><strong>${formatNumber(total.carbs,1)} g</strong></div><div class="meal-total-item"><span>Fett</span><strong>${formatNumber(total.fat,1)} g</strong></div></div></div>${meal.type==="options"?renderOptionSelect(mealKey):""}<div class="meal-body">${renderIngredientTable(mealKey,!meal.active)}</div>`;
+    root.appendChild(section);
+  });
+}
 </script>
 </body>
 </html>
-
-
-
-
-
 
 
 
