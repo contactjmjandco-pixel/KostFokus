@@ -42,7 +42,11 @@
     .meal-total-grid{display:grid;grid-template-columns:repeat(4,minmax(62px,auto));gap:12px;margin-left:auto;text-align:center;white-space:nowrap}
     .meal-total-item span{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.05em}
     .meal-total-item strong{display:block;color:var(--green);font-size:.9rem}
-    .amount-head span{transform:translateX(-22px)}
+    .amount-head span{transform:translateX(-31px)}
+    .meal-table thead th.num{text-align:center}
+    .meal-table tbody td.num{text-align:center}
+    .meal-table thead th:nth-child(5){font-size:0}
+    .meal-table thead th:nth-child(5)::after{content:"Carbs";font-size:.82rem}
     .amount-control{grid-template-columns:36px 68px 36px 56px;gap:7px}
     .amount-control button{width:36px;height:36px}
     .amount-control input[type=number]{width:68px}
@@ -51,11 +55,17 @@
       .meal-head{justify-content:flex-start;overflow-x:auto}
       .meal-title{flex:0 0 auto}
       .meal-total-grid{margin-left:12px;flex:0 0 auto}
-      .meal-table .amount-control{transform:translateX(-24px)}
-      .meal-table .amount-head span{transform:translateX(-22px)}
-      .meal-table .amount-control{column-gap:10px}
-      .meal-table .amount-control input[type=number]{box-sizing:border-box;flex:0 0 68px}
-      .meal-table .amount-control button{box-sizing:border-box;flex:0 0 36px}
+       .meal-table .amount-control{
+         grid-template-columns:25px 42px 25px 28px;
+         justify-content:center;
+         margin-left:auto;
+         margin-right:auto;
+         transform:none;
+       }
+       .meal-table .amount-head span{transform:translateX(-18px)}
+       .meal-table .amount-control{column-gap:7px}
+       .meal-table .amount-control input[type=number]{box-sizing:border-box;flex:0 0 42px}
+       .meal-table .amount-control button{box-sizing:border-box;flex:0 0 25px}
     }
   </style>
 </head>
@@ -594,13 +604,6 @@ function renderMeals(){
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
 
 
 
