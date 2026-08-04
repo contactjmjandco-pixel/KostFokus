@@ -25,6 +25,13 @@
     @media(max-width:560px){.custom-form-grid{grid-template-columns:1fr}.custom-field-wide{grid-column:auto}.custom-form-actions button{width:100%}.macro-total-grid{grid-template-columns:1fr}.view-tabs{grid-template-columns:repeat(4,1fr)!important}.view-tab{min-width:0!important;font-size:.78rem!important}.meal-body table{min-width:980px}}
 
     .compact-toggles label:has(#trainingToggle){display:none!important}
+    @media(max-width:920px){
+      .meal-body{overflow-x:auto;padding:0 10px 10px;-webkit-overflow-scrolling:touch}
+      .meal-table{min-width:820px}
+      .meal-table th:first-child,.meal-table td:first-child{padding-left:14px}
+      .meal-table .amount-head span{transform:none}
+      .meal-table .amount-control{margin-left:auto;margin-right:auto}
+    }
   </style>
 </head>
 <body>
@@ -525,7 +532,6 @@ function confirmResetPlan(){
 </script>
 </body>
 </html>
-
 
 
 
