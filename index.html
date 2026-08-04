@@ -42,11 +42,16 @@
     .meal-total-grid{display:grid;grid-template-columns:repeat(4,minmax(62px,auto));gap:12px;margin-left:auto;text-align:right;white-space:nowrap}
     .meal-total-item span{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.05em}
     .meal-total-item strong{display:block;color:var(--green);font-size:.9rem}
-    .amount-head span{transform:translateX(-31px)}
+    .amount-head span{transform:translateX(-22px)}
     .amount-control{grid-template-columns:36px 68px 36px 56px;gap:7px}
     .amount-control button{width:36px;height:36px}
     .amount-control input[type=number]{width:68px}
     @media(max-width:720px){.meal-total-grid{grid-template-columns:repeat(4,minmax(52px,auto));gap:6px}.meal-total-item span{font-size:.58rem}.meal-total-item strong{font-size:.76rem}}
+    @media(max-width:720px){
+      .meal-head{justify-content:flex-start;overflow-x:auto}
+      .meal-title{flex:0 0 auto}
+      .meal-total-grid{margin-left:12px;flex:0 0 auto}
+    }
   </style>
 </head>
 <body>
@@ -561,8 +566,6 @@ function renderMeals(){
 </script>
 </body>
 </html>
-
-
 
 
 
