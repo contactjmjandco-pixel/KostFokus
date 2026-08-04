@@ -315,7 +315,10 @@ if(ensureFoodPreferenceDefaults())persistPlan();
 if(ensureExtraOatMilkDefaults())persistPlan();
 ensureDefaultMealSelections(isFreshPlan);
 applyBalancedMealDefaults(isFreshPlan);
+enforceCanonicalIngredientMacros();
+persistPlan();
 recalculateWeightDependentState();
+persistPlan();
 refresh();
 
 function removeShakeMealOption(){
@@ -455,6 +458,26 @@ function ensureExtraOatMilkDefaults(){
   return changed;
 }
 
+function enforceCanonicalIngredientMacros(){
+  eachPlanIngredient(item=>{
+    if(item.id==="quark"&&Number(item.baseAmount)===250){
+      item.baseCarbs=7.75;
+      item.baseFat=0.25;
+      return;
+    }
+    if(item.id==="beef"){
+      item.baseCarbs=0;
+      item.baseFat=12;
+      return;
+    }
+    const ref=STANDARD_MACRO_DEFAULTS[item.id];
+    if(!ref)return;
+    const ratio=Number(item.baseAmount||ref.baseAmount)/Number(ref.baseAmount||1);
+    item.baseCarbs=Number((ref.carbs*ratio).toFixed(3));
+    item.baseFat=Number((ref.fat*ratio).toFixed(3));
+  });
+}
+
 function applyBalancedMealDefaults(isFreshPlan){
   if(!isFreshPlan)return;
   const set=(optionKey,id,amount,active=true)=>{
@@ -568,10 +591,6 @@ function renderMeals(){
 </script>
 </body>
 </html>
-
-
-
-
 
 
 
